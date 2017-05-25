@@ -1,0 +1,44 @@
+create table especialidades
+(
+	id bigserial NOT NULL,
+	nombre text NOT NULL,
+
+	PRIMARY KEY (id)
+);
+create table carreras
+(
+	id bigserial NOT NULL,
+	nombre bigint,
+
+	PRIMARY KEY (id),
+	FOREIGN KEY (nombre) REFERENCES especialidades(id)
+);
+create table semestres
+(
+	id bigserial NOT NULL,
+	numero text NOT NULL,
+
+	PRIMARY KEY (id)
+);
+create table grupos
+(
+	id bigserial NOT NULL,
+	nombre bigint,
+
+	PRIMARY KEY (id),
+	FOREIGN KEY (nombre) REFERENCES semestres(id)
+);
+create table alumnos
+(
+	id bigserial NOT NULL,
+	nombre text NOT NULL,
+	apellido text NOT NULL,
+	direccion text NOT NULL,
+	telefono text NOT NULL,
+	edad integer,
+	correo_electronico text,
+	estado_civil text,
+	nu_carrera bigint REFERENCES carreras(id),
+	PRIMARY KEY (id),
+	FOREIGN KEY (nu_carrera) REFERENCES carreras(id)
+);	
